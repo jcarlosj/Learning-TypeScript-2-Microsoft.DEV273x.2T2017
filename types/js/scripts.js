@@ -1,5 +1,6 @@
 /* Types: Interfaces */
-// La función requiere como parámetro un objeto que tenga una propiedad de nombre 'rotulo' de tipo 'string'
+// La función requiere como parámetro un objeto que tenga una 'Interface'
+// con la estructura donde la propiedad de nombre 'rotulo' sea de tipo 'string'
 function imprimirEtiqueta(etiqueta) {
     console.log('Rotulo: ', etiqueta.rotulo);
 }
