@@ -1,16 +1,15 @@
-/* Types: Cualquier tipo */
+/* Types: Interfaces */
 
-/* Types: Assertions
- * Una aserción de tipo es como un tipo de conversión. No tiene impacto
-   en tiempo de ejecución y lo usa exclusivamente TypeScript Se usan los
-    angulares (angle-bracket) para indicar la aserción de tipo
- * "Creeme que sé lo que estoy haciendo o yo sé que es eso" */
+// La función requiere como parámetro un objeto que tenga una propiedad de nombre 'rotulo' de tipo 'string'
+function imprimirEtiqueta( etiqueta: { rotulo: string } ) {
+  console .log( 'Rotulo: ', etiqueta .rotulo );
+}
 
-let algunValor : any = "Esta es una cadena de texto";
-let cantidadCaracteres_1 : number = ( <string> algunValor ) .length;    // Forma 1
-let cantidadCaracteres_2 : number = ( algunValor as string ) .length;   // Forma 2
+// Define un objeto
+let etiqueta = {
+  tamanio: 10,
+  rotulo: 'Objeto de tamaño 10'
+}
 
-console .group( 'Type Assertions' );
-  console .log( 'cantidadCaracteres_1 ', cantidadCaracteres_1 );
-  console .log( 'cantidadCaracteres_2 ', cantidadCaracteres_2 );
-console .groupEnd();
+// Ejecuta la función y se le pasa un objeto con las características mínimas que exije la misma
+imprimirEtiqueta( etiqueta );
