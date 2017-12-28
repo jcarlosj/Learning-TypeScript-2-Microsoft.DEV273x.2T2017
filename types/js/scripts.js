@@ -1,25 +1,19 @@
 /* Types: Readonly properties */
-var a = [1, 2, 3, 4];
-var b = [7, 8, 9, 0];
-var ro = a;
-console.log('let a: number[] = [1, 2, 3, 4]; ... ', a);
-console.log('let b: number[] = [7, 8, 9, 0]; ... ', b);
-console.group('ReadonlyArray<number>');
-console.log('------------------------------------');
-console.log('*let ro: ReadonlyArray<number> = a; ... ', ro);
-console.groupEnd();
-/* Los siguientes ejemplos generarán errores pues no se les puede Asignar valores
-   a variables designadas como de solo lectura
-
-ro[0] = 12;         // ERROR!
-ro.push(5);         // ERROR!
-ro.length = 100;    // ERROR!
-a = ro;             // ERROR!
-*/
-// EXCEPCIÓN: Usamos una aserción de tipo pára anular la propiedad de solo escritura
-a = ro;
-b = ro;
-console.group('Anulacion "readonly" usando un "Type Assertion"');
-console.log('a = ro as number[]; ... ', a);
-console.log('b = <number[]> ro; ... ', b);
-console.groupEnd();
+function crearCuadrado(config) {
+    /* Objeto estandar */
+    var cuadrado = {
+        color: 'white',
+        area: 100
+    };
+    /* Valida si las propiedades de la interface existen */
+    if (config.color) {
+        cuadrado.color = config.color;
+    }
+    if (config.lado) {
+        cuadrado.area = config.lado * config.lado;
+    }
+    return cuadrado; // Objeto
+}
+// Ejecuta la función y se le pasa a un objeto con las características mínimas que exije la misma
+var primerCuadrado = crearCuadrado({ colour: 'blue', lado: 5 }); // ERROR: la propiedad 'colour' no existe en el tipo 'Cuadrado' (Interface).
+console.log('primerCuadrado ', primerCuadrado);
