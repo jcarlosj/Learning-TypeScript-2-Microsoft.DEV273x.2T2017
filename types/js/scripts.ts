@@ -1,36 +1,20 @@
 /* Types: Interfaces */
 
 // Interface
-interface Cuadrado {
-  color?: string;
-  lado?: number;
+interface Punto {
+  /* Define las propiedades como de solo lectura */
+  readonly coordenada_X : number;
+  readonly coordenada_Y : number;
 }
 
-// La función requiere como parámetro un objeto que tenga una propiedad de nombre 'rotulo' de tipo 'string'
-function crearCuadrado( config: Cuadrado ) : { color: string; area: number } {
-    /* Objeto estandar */
-    let cuadrado = {
-      color: 'white',
-      area: 100
-    };
+// Creamos un objeto literal
+let punto1 : Punto = {
+  coordenada_X: 10,
+  coordenada_Y: 20
+};
 
-    /* Valida si las propiedades de la interface existen */
-    if( config .color ) {
-      cuadrado .color = config .color;
-    }
-    if( config .lado                                             ) {
-      cuadrado .area = config .lado * config .lado;
-    }
+/* Mostramos el Objeto */
+console .log( 'punto1 ', punto1 );
 
-    return cuadrado;    // Objeto
-}
-
-// Ejecuta la función y se le pasa un objeto con las características mínimas que exije la misma
-let primerCuadrado = crearCuadrado( { color: 'rojo', lado: 7 } ),
-    segundoCuadrado = crearCuadrado( { lado: 25 } ),
-    tercerCuadrado = crearCuadrado({});
-
-// Resultados
-console .log( 'primerCuadrado ', primerCuadrado );
-console .log( 'segundoCuadrado ', segundoCuadrado );
-console .log( 'tercerCuadrado ', tercerCuadrado );
+/* Asignamos nuevo valor a X */
+//  punto1 .coordenada_X = 5;      // ERROR: por que la propiedad es solo de lectura
