@@ -10,7 +10,7 @@ interface Buscar {
 let busqueda: Buscar;
 
 /* Le asignamos una funcion con los parametros definidos */
-busqueda = function( fuente: string, subcadena: string ) : any {
+busqueda = function( fuente, subcadena ) {
   let resultado = fuente .search( subcadena );
   return resultado > -1;
 }
