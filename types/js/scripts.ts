@@ -1,19 +1,18 @@
-/* Types: Function Types
+/* Types: Indexable Types
  * Las interfaces pemiten describir los tipos de funciones de un Objeto */
 
-/* Crea 'Interface' */
-interface Buscar {
- ( fuente: string, subcadena: string ) : boolean;   // Firma de llamada: lista de parámetros que requiere (nombres y tipos)
+/* Crea 'Interface' que índica que cuando un dato sea agregado usando la 'Interface'
+ * se indexa con un número y devolverá una cadena */
+interface Lista {
+    [ indice: number ] : string;  /* Firma de índice (describe los tipos que podemos usar
+                                   * para indexar en el objeto, junto con los tipos de devolución) */
 }
 
-/* Crea una variable del tipo de la 'Interface' */
-let busqueda: Buscar;
+let lista : Lista;    // Crea una variable del tipo de la 'Interface'
+lista = [ 'Juan', 'Jiménez' ];
 
-/* Le asignamos una funcion con los parametros definidos */
-busqueda = function( fuente, subcadena ) {
-  let resultado = fuente .search( subcadena );
-  return resultado > -1;
-}
+let nombre : string = lista[ 0 ],
+    apellido : string = lista[ 1 ];
 
-/* Resultado */
-console .log( 'busqueda ', busqueda );
+console .log( 'Nombre ', nombre );
+console .log( 'Apellido ', apellido );
