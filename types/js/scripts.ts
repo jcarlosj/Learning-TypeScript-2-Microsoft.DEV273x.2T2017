@@ -1,35 +1,36 @@
-/* Types: Readonly properties */
+/* Types: Class Types */
 
-interface Cuadrado {
-  color? : string;
-  lado? : number;
-  [ nombrePropiedad: string ] : any;      // Agregamos una firma de índice tipo string (index signature)
-                                          // Con esto podemos tener cualquier cantidad de propiedades que
-                                          // no sean las ya definidas (color, lado en nuestro caso)
+/* Define Interface
+ * La interface describe el lado público de una clase */
+interface RelojInterface {
+  tiempoActual: Date;
+  setTime( tiempo: Date );
 }
 
-function crearCuadrado( config: Cuadrado ) : { color: string, area: number } {
+/* Define clase que hereda de una 'Interface'
+ * Al heredar la 'Interface' obliga a la clase a declarar los atributos y métodos
+ * que esta posee en la clase en la que se implementa */
+class Reloj implements RelojInterface {
+  /* Atributos */
+  tiempoActual: Date;       // Es obligatorio definirla por la 'Interface'
 
-  /* Objeto estandar */
-  let cuadrado = {
-    color: 'white',
-    area: 100
-  };
+  /* Constructor*/
+  constructor( horas: number, minutos: number ) {}
 
-  /* Valida si las propiedades de la interface existen */
-  if ( config .color ) {
-    cuadrado .color = config .color;
+  /* setTime es un método oblicado a definirse por la 'Interface' */
+  setTime( tiempo: Date ) {
+    this .tiempoActual = tiempo;
   }
-  if ( config .lado ) {
-    cuadrado .area = config .lado * config .lado;
+
+  /* getTiempo se declaró pero no esta obligado a ser definido por la'Interface'*/
+  getTime() {
+    return this .tiempoActual;
   }
 
-  return cuadrado;    // Objeto
 }
 
-// Ejecuta la función y se le pasa a un objeto con las características mínimas que exije la misma
-let primerCuadrado = crearCuadrado({ colour: 'blue', lado: 5 });
-let segundoCuadrado = crearCuadrado({ color: 'orange', opacidad: 0.5, borde: '1px' });
+/* Instancia */
+let reloj = new Reloj( 10, 30 );
 
-console .log( 'primerCuadrado ', primerCuadrado );    // Pero la nueva propiedad que se pasa y que no tiene la 'Interface' no se verá reflejada
-console .log( 'segundoCuadrado ', segundoCuadrado );  // Pero la nueva propiedad que se pasa y que no tiene la 'Interface' no se verá reflejada
+/* Resultado */
+console .log( 'reloj ', reloj );
