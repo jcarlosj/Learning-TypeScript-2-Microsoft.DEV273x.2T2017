@@ -1,20 +1,39 @@
-/* Types: Class Types */
+/* Types: Class Types
+ * Trabajamos directamente con el lado estático de la clase, osea el constructor()
+ * */
 
-/* Define Interface
- * El ERROR se produce por que cuando la clase implementa una 'Interface'
- * solo se verifica el lado de la instancia de la clase. Como el constructor
- * se encuentra en el lado estático, no esta incluido en este control */
+/* Definición de Interface que controla la creación del constructor */
 interface RelojConstructor {
-  new ( horas: number, minutos: number );
+  new ( horas: number, minutos: number ) : RelojInterface;    /* Heredando de la Interface (RelojInterface) */
+}
+interface RelojInterface {
+  tick();
 }
 
-class Reloj implements RelojConstructor {
-  tiempoActual: Date;
+/* Definición de dos clases (RelojDigital, RelojAnalogo) que hereda de 'RelojConstructor' */
+class RelojDigital implements RelojConstructor {
   constructor( horas: number, minutos: number ) {}
+  tick() {
+    return 'beep beep';
+  }
+}
+class RelojAnalogo implements RelojConstructor {
+  constructor( horas: number, minutos: number ) {}
+  tick() {
+    return 'tick tock';
+  }
 }
 
-/* ERROR:
-types/js/scripts.ts(11,7): error TS2420: Class 'Reloj' incorrectly implements interface 'RelojConstructor'.
-Type 'Reloj' provides no match for the signature 'new (horas: number, minutos: number): any'.
-16:35:51 - Compilation complete. Watching for file changes.
- */
+/* Función que crea las instancias del tipo que se le pasan */
+function crearReloj( constructorReloj: RelojConstructor, horas: number, minutos: number ) : RelojInterface {
+  return new constructorReloj( horas, minutos );    // Equivale a: new RelojDigital( horas, minutos ) o new RelojAnalogo( horas, minutos )
+}
+
+/* Ejecutamos cada una de las clases sin hacer instanciación de las mismas */
+let digital = crearReloj( RelojDigital, 12, 17 );
+let analogo = crearReloj( RelojAnalogo, 7, 32 );
+
+console .group( 'Reloj' );
+  console .log( 'Digital ', digital .tick() );
+  console .log( 'Analogo ', analogo .tick() );
+console .groupEnd();
