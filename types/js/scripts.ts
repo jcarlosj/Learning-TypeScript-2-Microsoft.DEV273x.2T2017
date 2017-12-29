@@ -1,32 +1,51 @@
 /* Types: Classes
- * Podemos declarar estructuras de clases en TypeScript */
+ * Las clases abstractas son clases base de las cuales pueden derivarse otras clases
+ * No pueden ser instanciados directamente. A diferencia de una interfaz, una clase
+ * abstracta puede contener detalles de implementación para sus miembros. La palabra
+ * clave 'abstract' se usa para definir estas clases, así como también los métodos
+ * dentro de la misma */
 
-/* Definición de la clase con propiedades estáticas */
-class Grilla {
-  /* Atributos Estáticos */
-  static origen = { x: 0, y: 0 };
-
+/* Definición de la clase abstracta */
+abstract class Departamento {
+  /* Atributos o propiedades */
+  nombre: string;
   /* Constructor */
-  public constructor( public escala: number ) {
-    this .escala = escala;
+  public constructor( nombreDelDepartamento : string ) {
+    this .nombre = nombreDelDepartamento;
   }
-
   /* Métodos */
-  public calcularDistanciaDesdeOrigen( point: { x: number, y: number } ) {
-    let distanciaEnX = ( point .x - Grilla .origen .x ),
-        distanciaEnY = ( point .y - Grilla .origen .y );
-
-    return Math .sqrt( distanciaEnX * distanciaEnX + distanciaEnY * distanciaEnY ) / this .escala;
+  public imprimirNombre() : void {
+    console .log( 'Departamento de: ', this .nombre );
   }
 
+  abstract imprimirReunion() : void;    // Debe ser implementados en las clases derivadas
 }
 
-/* Instancias*/
-let grilla1 = new Grilla( 1.0 ),
-    grilla2 = new Grilla( 5.0 );
+/* Definición de una clase que hereda de una clase abstracta */
+class DepartamentoContable extends Departamento {
+  /* Constructor */
+  public constructor() {
+    super( 'Contabilidad y auditoría' );    // Constructores en clases derivadas deben llamar a super
+  }
+  /* Métodos */
+  public imprimirReunion() : void {
+    console .log( 'Este departamento se reúne todos los lunes a las 10am' );
+  }
+  public generarReportes() : void {
+    console .log( 'Generación de informes contables' );
+  }
+}
 
-/* Resultados */
-console .group( 'Propiedades estáticas' );
-  console .log( 'Grilla 1: ', grilla1 .calcularDistanciaDesdeOrigen( { x: 10, y: 10 } ) );
-  console .log( 'Grilla 2: ', grilla2 .calcularDistanciaDesdeOrigen( { x: 10, y: 10 } ) );
-console .groupEnd();
+/* Crea referencia a una clase de tipo abstracto */
+let departamento: Departamento;
+/* ERRORES que no se deben cometer */
+// departamento1 = new Departamento();  // No se puede crear una instancia a partir de una clase abstracta
+// departamento .generarReportes();     // Este método no esta declarado como abstracto por lo que no se considera existente
+
+//departamento .imprimirNombre();
+// departamento .imprimirReunion();     // Este método no esta declarado como abstracto por lo que no se considera existente
+
+/* Crea Instancia apartir de una clase que hereda de una clase abstracta */
+let departamento2 = new DepartamentoContable();
+departamento2 .imprimirNombre();
+departamento2 .imprimirReunion();

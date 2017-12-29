@@ -1,25 +1,55 @@
 /* Types: Classes
- * Podemos declarar estructuras de clases en TypeScript */
-/* Definición de la clase con propiedades estáticas */
-var Grilla = /** @class */ (function () {
+ * Las clases abstractas son clases base de las cuales pueden derivarse otras clases
+ * No pueden ser instanciados directamente. A diferencia de una interfaz, una clase
+ * abstracta puede contener detalles de implementación para sus miembros. La palabra
+ * clave 'abstract' se usa para definir estas clases, así como también los métodos
+ * dentro de la misma */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/* Definición de la clase abstracta */
+var Departamento = /** @class */ (function () {
     /* Constructor */
-    function Grilla(escala) {
-        this.escala = escala;
-        this.escala = escala;
+    function Departamento(nombreDelDepartamento) {
+        this.nombre = nombreDelDepartamento;
     }
     /* Métodos */
-    Grilla.prototype.calcularDistanciaDesdeOrigen = function (point) {
-        var distanciaEnX = (point.x - Grilla.origen.x), distanciaEnY = (point.y - Grilla.origen.y);
-        return Math.sqrt(distanciaEnX * distanciaEnX + distanciaEnY * distanciaEnY) / this.escala;
+    Departamento.prototype.imprimirNombre = function () {
+        console.log('Departamento de: ', this.nombre);
     };
-    /* Atributos Estáticos */
-    Grilla.origen = { x: 0, y: 0 };
-    return Grilla;
+    return Departamento;
 }());
-/* Instancias*/
-var grilla1 = new Grilla(1.0), grilla2 = new Grilla(5.0);
-/* Resultados */
-console.group('Propiedades estáticas');
-console.log('Grilla 1: ', grilla1.calcularDistanciaDesdeOrigen({ x: 10, y: 10 }));
-console.log('Grilla 2: ', grilla2.calcularDistanciaDesdeOrigen({ x: 10, y: 10 }));
-console.groupEnd();
+/* Definición de una clase que hereda de una clase abstracta */
+var DepartamentoContable = /** @class */ (function (_super) {
+    __extends(DepartamentoContable, _super);
+    /* Constructor */
+    function DepartamentoContable() {
+        return _super.call(this, 'Contabilidad y auditoría') || this;
+    }
+    /* Métodos */
+    DepartamentoContable.prototype.imprimirReunion = function () {
+        console.log('Este departamento se reúne todos los lunes a las 10am');
+    };
+    DepartamentoContable.prototype.generarReportes = function () {
+        console.log('Generación de informes contables');
+    };
+    return DepartamentoContable;
+}(Departamento));
+/* Crea referencia a una clase de tipo abstracto */
+var departamento;
+/* ERRORES que no se deben cometer */
+// departamento1 = new Departamento();  // No se puede crear una instancia a partir de una clase abstracta
+// departamento .generarReportes();     // Este método no esta declarado como abstracto por lo que no se considera existente
+//departamento .imprimirNombre();
+// departamento .imprimirReunion();     // Este método no esta declarado como abstracto por lo que no se considera existente
+/* Crea Instancia apartir de una clase que hereda de una clase abstracta */
+var departamento2 = new DepartamentoContable();
+departamento2.imprimirNombre();
+departamento2.imprimirReunion();
