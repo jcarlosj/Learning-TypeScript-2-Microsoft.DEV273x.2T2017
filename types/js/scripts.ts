@@ -2,14 +2,31 @@
  * Podemos declarar estructuras de clases en TypeScript */
 
 /* Definición de la clase sin 'Accessors' (Getters & Setters) */
+let codigoSecreto = '12345';
+
 class Empleado {
   /* Atributos o propiedades */
-  nombre_completo : string;
+  private _nombrecompleto : string;
+
+  /* Métodos 'Accessors' (Accesorios) */
+  get nombreCompleto() : string {
+    return this ._nombrecompleto;
+  }
+  set nombreCompleto( nuevonombre: string ) {
+    if( codigoSecreto && codigoSecreto == '12345' ) {
+        this ._nombrecompleto = nuevonombre;
+    }
+    else {
+      console .log( 'ERROR: No esta autorizado a realizar cambios' );
+    }
+
+  }
+
 }
 
 let empleado = new Empleado();
-empleado .nombre_completo = 'Jorge Robles';
+empleado .nombreCompleto = 'Jorge Robles';
 
-if( empleado .nombre_completo ) {
-  console .log( 'Nombre: ', empleado .nombre_completo );
+if( empleado .nombreCompleto ) {
+  console .log( 'Nombre: ', empleado .nombreCompleto );
 }
