@@ -6,20 +6,31 @@
  * declaraciones al mismo tiempo. El primero es el tipo de la instancia
  * de la clase */
 
-/* Función de constructor */
-let Saludar = ( function() {
-    /* Constructor */
-    function Saludar( mensajeSaludo ) {
-      this .saludo = mensajeSaludo;
-    }
-    /* Agregamos un método 'darSaludo' a la Funcion de Constructor 'Saludar' */
-    Saludar .prototype .darSaludo = function() {
+class Saludar {
+  /* Atributo */
+  static saludoEstandar = 'Qué más!';
+  saludo : string;
+
+  /* Métodos */
+  darSaludo() {
+    if( this .saludo ) {
       return 'Hola, ' + this .saludo;
-    };
+    }
+    else {
+      return Saludar .saludoEstandar;
+    }
+  }
+}
 
-    return Saludar;
-})();
+/* Instancia FORMA 1 */
+let saludo1: Saludar;        // Declara una variable con el tipo de la misma Instancias
+saludo1 = new Saludar();      // Instancia la clase en la variable del mismo tipo
 
-let saludar;
-saludar = new Saludar( 'Mundo!' );  // Creamos la Instancia de Funcion
-console .log( saludar .darSaludo() );
+console .log( 'saludo1 ', saludo1 .darSaludo() );
+
+/*Crea variable que contiene la clase en sí (osea la función constructora) */
+let unSaludo: typeof Saludar = Saludar;               // typeof obtiene el tipo de clase (en lugar del tipo de instancia, con el que se obtendran todos los miembros estáticos de "Saludar")
+unSaludo .saludoEstandar = "Que tal y entonces!";
+
+let saludo2: Saludar = new unSaludo();             // Obtenemos acceso a todos los miembros no estáticos de la clase "Saludar"
+console .log( 'saludo2 ',  saludo2 .darSaludo() );
