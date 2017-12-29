@@ -1,36 +1,20 @@
 /* Types: Classes
  * Técnicas Avanzadas */
 
-/* Contructor functions
- * Cuando se declara una clase en TS, en realidad está creando múltiples
- * declaraciones al mismo tiempo. El primero es el tipo de la instancia
- * de la clase */
+ /* Usando una clase como 'Interface'
+  * Una declaración de clase (2 ejemplos anteriores) crea 2 cosas
+  * la primera: un tipo que representa instancias de clase y una función
+  * de constructor. Debido a que las clases crean tipos puede usarlos en
+  * los mismos lugares donde podría usar interfaces */
 
-class Saludar {
-  /* Atributo */
-  static saludoEstandar = 'Qué más!';
-  saludo : string;
-
-  /* Métodos */
-  darSaludo() {
-    if( this .saludo ) {
-      return 'Hola, ' + this .saludo;
-    }
-    else {
-      return Saludar .saludoEstandar;
-    }
-  }
+class Punto {
+  coordenada_x : number;
+  coordenada_y : number;
 }
 
-/* Instancia FORMA 1 */
-let saludo1: Saludar;        // Declara una variable con el tipo de la misma Instancias
-saludo1 = new Saludar();      // Instancia la clase en la variable del mismo tipo
+interface Punto3D extends Punto {
+  coordenada_z: number;
+}
 
-console .log( 'saludo1 ', saludo1 .darSaludo() );
-
-/*Crea variable que contiene la clase en sí (osea la función constructora) */
-let unSaludo: typeof Saludar = Saludar;               // typeof obtiene el tipo de clase (en lugar del tipo de instancia, con el que se obtendran todos los miembros estáticos de "Saludar")
-unSaludo .saludoEstandar = "Que tal y entonces!";
-
-let saludo2: Saludar = new unSaludo();             // Obtenemos acceso a todos los miembros no estáticos de la clase "Saludar"
-console .log( 'saludo2 ',  saludo2 .darSaludo() );
+let punto3d: Punto3D = { coordenada_x: 1, coordenada_y: 2, coordenada_z: 3 };
+console .log( 'punto3d ', punto3d );
