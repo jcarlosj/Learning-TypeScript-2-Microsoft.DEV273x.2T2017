@@ -1,32 +1,32 @@
 /* Types: Classes
  * Podemos declarar estructuras de clases en TypeScript */
 
-/* Definición de la clase sin 'Accessors' (Getters & Setters) */
-let codigoSecreto = '12345';
+/* Definición de la clase con propiedades estáticas */
+class Grilla {
+  /* Atributos Estáticos */
+  static origen = { x: 0, y: 0 };
 
-class Empleado {
-  /* Atributos o propiedades */
-  private _nombrecompleto : string;
-
-  /* Métodos 'Accessors' (Accesorios) */
-  get nombreCompleto() : string {
-    return this ._nombrecompleto;
+  /* Constructor */
+  public constructor( public escala: number ) {
+    this .escala = escala;
   }
-  set nombreCompleto( nuevonombre: string ) {
-    if( codigoSecreto && codigoSecreto == '12345' ) {
-        this ._nombrecompleto = nuevonombre;
-    }
-    else {
-      console .log( 'ERROR: No esta autorizado a realizar cambios' );
-    }
 
+  /* Métodos */
+  public calcularDistanciaDesdeOrigen( point: { x: number, y: number } ) {
+    let distanciaEnX = ( point .x - Grilla .origen .x ),
+        distanciaEnY = ( point .y - Grilla .origen .y );
+
+    return Math .sqrt( distanciaEnX * distanciaEnX + distanciaEnY * distanciaEnY ) / this .escala;
   }
 
 }
 
-let empleado = new Empleado();
-empleado .nombreCompleto = 'Jorge Robles';
+/* Instancias*/
+let grilla1 = new Grilla( 1.0 ),
+    grilla2 = new Grilla( 5.0 );
 
-if( empleado .nombreCompleto ) {
-  console .log( 'Nombre: ', empleado .nombreCompleto );
-}
+/* Resultados */
+console .group( 'Propiedades estáticas' );
+  console .log( 'Grilla 1: ', grilla1 .calcularDistanciaDesdeOrigen( { x: 10, y: 10 } ) );
+  console .log( 'Grilla 2: ', grilla2 .calcularDistanciaDesdeOrigen( { x: 10, y: 10 } ) );
+console .groupEnd();
