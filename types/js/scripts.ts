@@ -6,7 +6,7 @@ class Animal {
   /* Atributos o propiedades */
   protected nombre: string;
   /* Constructor */
-  public constructor( nombreDelAnimal: string ) {
+  protected constructor( nombreDelAnimal: string ) {
     this .nombre = nombreDelAnimal;
   }
   /* Métodos */
@@ -28,11 +28,10 @@ class Rinoceronte extends Animal {
 }
 
 /* Instancias de cada una de las clases */
-let animal      = new Animal( 'Ardilla' ),
+let //animal      = new Animal( 'Ardilla' ), // No puedo realizar la instancia por que el Constructor es de tipo protected
     rinoceronte = new Rinoceronte();
 
 /* Resultados */
 console .group( 'Modificadores (protected)' );
-  animal .seMueve( 15 );
   rinoceronte .camina( 2 );
 console .groupEnd();

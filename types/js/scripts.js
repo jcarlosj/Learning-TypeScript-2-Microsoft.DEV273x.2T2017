@@ -36,9 +36,9 @@ var Rinoceronte = /** @class */ (function (_super) {
     return Rinoceronte;
 }(Animal));
 /* Instancias de cada una de las clases */
-var animal = new Animal('Ardilla'), rinoceronte = new Rinoceronte();
+var //animal      = new Animal( 'Ardilla' ), // No puedo realizar la instancia por que el Constructor es de tipo protected
+rinoceronte = new Rinoceronte();
 /* Resultados */
 console.group('Modificadores (protected)');
-animal.seMueve(15);
 rinoceronte.camina(2);
 console.groupEnd();
