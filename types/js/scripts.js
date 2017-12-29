@@ -16,6 +16,10 @@ var Animal = /** @class */ (function () {
     function Animal(nombreDelAnimal) {
         this.nombre = nombreDelAnimal;
     }
+    /* Métodos */
+    Animal.prototype.seMueve = function (distancia) {
+        console.log(this.nombre + " se ha movido " + distancia + "mts");
+    };
     return Animal;
 }());
 /* Definición de la clase Rinceronte heredando de la clase 'Padre' Animal */
@@ -25,26 +29,16 @@ var Rinoceronte = /** @class */ (function (_super) {
     function Rinoceronte() {
         return _super.call(this, 'Rinoceronte') || this;
     }
+    /* Métodos */
+    Rinoceronte.prototype.seMueve = function (distancia) {
+        _super.prototype.seMueve.call(this, distancia);
+    };
     return Rinoceronte;
 }(Animal));
-/* Definición de la clase Empleado */
-var Empleado = /** @class */ (function () {
-    /* Constructor */
-    function Empleado(nombreDelEmpleado) {
-        this.nombre = nombreDelEmpleado;
-    }
-    return Empleado;
-}());
 /* Instancias de cada una de las clases */
-var animal = new Animal('Ardilla'), rinoceronte = new Rinoceronte(), empleado = new Empleado('Bernard');
+var animal = new Animal('Ardilla'), rinoceronte = new Rinoceronte();
 /* Resultados */
-console.group('Antes de asignar (animal = rinoceronte;)');
-console.log('animal ', animal.nombre);
-console.log('rinoceronte ', rinoceronte.nombre);
-console.groupEnd();
-animal = rinoceronte;
-//animal = empleado /* ERROR: La el objeto 'Animal' no es compatible con el objeto 'Empleado' */
-console.group('Después de asignar (animal = rinoceronte;)');
-console.log('animal ', animal.nombre);
-console.log('rinoceronte ', rinoceronte.nombre);
+console.group('Modificadores (public)');
+animal.seMueve(15);
+rinoceronte.seMueve(2);
 console.groupEnd();

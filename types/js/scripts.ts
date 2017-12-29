@@ -6,8 +6,12 @@ class Animal {
   /* Atributos o propiedades */
   public nombre: string;
   /* Constructor */
-  constructor( nombreDelAnimal: string ) {
+  public constructor( nombreDelAnimal: string ) {
     this .nombre = nombreDelAnimal;
+  }
+  /* Métodos */
+  public seMueve( distancia : number ) {
+    console .log( `${this .nombre} se ha movido ${distancia}mts` );
   }
 }
 
@@ -17,33 +21,18 @@ class Rinoceronte extends Animal {
   constructor() {
     super( 'Rinoceronte' );
   }
-}
-
-/* Definición de la clase Empleado */
-class Empleado {
-  /* Atributos o propiedades */
-  private nombre: string;
-  /* Constructor */
-  constructor( nombreDelEmpleado: string ) {
-    this .nombre = nombreDelEmpleado;
+  /* Métodos */
+  public seMueve( distancia : number ) {
+    super .seMueve( distancia );
   }
 }
 
 /* Instancias de cada una de las clases */
 let animal      = new Animal( 'Ardilla' ),
-    rinoceronte = new Rinoceronte(),
-    empleado    = new Empleado( 'Bernard' );
+    rinoceronte = new Rinoceronte();
 
 /* Resultados */
-console .group( 'Antes de asignar (animal = rinoceronte;)' );
-  console .log( 'animal ', animal .nombre );
-  console .log( 'rinoceronte ', rinoceronte .nombre );
-console .groupEnd();
-
-animal = rinoceronte;
-//animal = empleado /* ERROR: La el objeto 'Animal' no es compatible con el objeto 'Empleado' */
-
-console .group( 'Después de asignar (animal = rinoceronte;)' );
-  console .log( 'animal ', animal .nombre );
-  console .log( 'rinoceronte ', rinoceronte .nombre );
+console .group( 'Modificadores (public)' );
+  animal .seMueve( 15 );
+  rinoceronte .seMueve( 2 );
 console .groupEnd();
