@@ -4,7 +4,7 @@
 /* Definición de la clase Animal */
 class Animal {
   /* Atributos o propiedades */
-  public nombre: string;
+  private nombre: string;
   /* Constructor */
   public constructor( nombreDelAnimal: string ) {
     this .nombre = nombreDelAnimal;
@@ -13,17 +13,20 @@ class Animal {
   public seMueve( distancia : number ) {
     console .log( `${this .nombre} se ha movido ${distancia}mts` );
   }
+  public getNombre() {
+    return this .nombre;
+  }
 }
 
 /* Definición de la clase Rinceronte heredando de la clase 'Padre' Animal */
 class Rinoceronte extends Animal {
   /* Constructor */
-  constructor() {
+  public constructor() {
     super( 'Rinoceronte' );
   }
   /* Métodos */
-  public seMueve( distancia : number ) {
-    super .seMueve( distancia );
+  public camina( distancia : number ) {
+    console .log( `${this .getNombre()} ha caminado ${distancia}mts` );
   }
 }
 
@@ -32,7 +35,7 @@ let animal      = new Animal( 'Ardilla' ),
     rinoceronte = new Rinoceronte();
 
 /* Resultados */
-console .group( 'Modificadores (public)' );
+console .group( 'Modificadores (private)' );
   animal .seMueve( 15 );
-  rinoceronte .seMueve( 2 );
+  rinoceronte .camina( 2 );
 console .groupEnd();

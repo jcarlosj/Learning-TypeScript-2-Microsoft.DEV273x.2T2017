@@ -20,6 +20,9 @@ var Animal = /** @class */ (function () {
     Animal.prototype.seMueve = function (distancia) {
         console.log(this.nombre + " se ha movido " + distancia + "mts");
     };
+    Animal.prototype.getNombre = function () {
+        return this.nombre;
+    };
     return Animal;
 }());
 /* Definición de la clase Rinceronte heredando de la clase 'Padre' Animal */
@@ -30,15 +33,15 @@ var Rinoceronte = /** @class */ (function (_super) {
         return _super.call(this, 'Rinoceronte') || this;
     }
     /* Métodos */
-    Rinoceronte.prototype.seMueve = function (distancia) {
-        _super.prototype.seMueve.call(this, distancia);
+    Rinoceronte.prototype.camina = function (distancia) {
+        console.log(this.getNombre() + " ha caminado " + distancia + "mts");
     };
     return Rinoceronte;
 }(Animal));
 /* Instancias de cada una de las clases */
 var animal = new Animal('Ardilla'), rinoceronte = new Rinoceronte();
 /* Resultados */
-console.group('Modificadores (public)');
+console.group('Modificadores (private)');
 animal.seMueve(15);
-rinoceronte.seMueve(2);
+rinoceronte.camina(2);
 console.groupEnd();
