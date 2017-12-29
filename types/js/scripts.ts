@@ -1,37 +1,25 @@
 /* Types: Classes
  * Podemos declarar estructuras de clases en TypeScript */
 
-/* Definición de la clase Animal */
-class Animal {
-  /* Atributos o propiedades */
-  protected nombre: string;
-  /* Constructor */
-  protected constructor( nombreDelAnimal: string ) {
-    this .nombre = nombreDelAnimal;
-  }
-  /* Métodos */
-  public seMueve( distancia : number ) {
-    console .log( `${this .nombre} se ha movido ${distancia}mts` );
+/* Definición de la clase Pulpo */
+class Pulpo {
+  /* Atributos tipo readonly */
+  readonly nombre: string;
+  readonly numeroDeTentaculos = 8;    // Obliga a definir un valor en la declaración
+  public constructor( elNombre: string ) {
+    this .nombre = elNombre;          // o Obliga a definir un valor en el constructor (dinámino o no)
   }
 }
 
-/* Definición de la clase Rinceronte heredando de la clase 'Padre' Animal */
-class Rinoceronte extends Animal {
-  /* Constructor */
-  public constructor() {
-    super( 'Rinoceronte' );
-  }
-  /* Métodos */
-  public camina( distancia : number ) {
-    console .log( `${this .nombre} se ha caminado ${distancia}mts` );
-  }
-}
+/* Instancia */
+let pulpo = new Pulpo( 'Octopus' );
 
-/* Instancias de cada una de las clases */
-let //animal      = new Animal( 'Ardilla' ), // No puedo realizar la instancia por que el Constructor es de tipo protected
-    rinoceronte = new Rinoceronte();
+/* Si intentamos realizar cambios a los Atributos nos dará ERROR (pues son de solo lectura) */
+// pulpo .nombre = 'Ahora me llamo Jorge'; // ERROR
+// pulpo .numeroDeTentaculos = 5 // ERROR
 
 /* Resultados */
-console .group( 'Modificadores (protected)' );
-  rinoceronte .camina( 2 );
+console .group( 'Modificadores (readonly)' );
+  console .log( 'Nombre: ', pulpo .nombre );
+  console .log( '# tentaculos: ', pulpo .numeroDeTentaculos );
 console .groupEnd();

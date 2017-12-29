@@ -1,44 +1,20 @@
 /* Types: Classes
  * Podemos declarar estructuras de clases en TypeScript */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-/* Definición de la clase Animal */
-var Animal = /** @class */ (function () {
-    /* Constructor */
-    function Animal(nombreDelAnimal) {
-        this.nombre = nombreDelAnimal;
+/* Definición de la clase Pulpo */
+var Pulpo = /** @class */ (function () {
+    function Pulpo(elNombre) {
+        this.numeroDeTentaculos = 8; // Obliga a definir un valor en la declaración
+        this.nombre = elNombre; // o Obliga a definir un valor en el constructor (dinámino o no)
     }
-    /* Métodos */
-    Animal.prototype.seMueve = function (distancia) {
-        console.log(this.nombre + " se ha movido " + distancia + "mts");
-    };
-    return Animal;
+    return Pulpo;
 }());
-/* Definición de la clase Rinceronte heredando de la clase 'Padre' Animal */
-var Rinoceronte = /** @class */ (function (_super) {
-    __extends(Rinoceronte, _super);
-    /* Constructor */
-    function Rinoceronte() {
-        return _super.call(this, 'Rinoceronte') || this;
-    }
-    /* Métodos */
-    Rinoceronte.prototype.camina = function (distancia) {
-        console.log(this.nombre + " se ha caminado " + distancia + "mts");
-    };
-    return Rinoceronte;
-}(Animal));
-/* Instancias de cada una de las clases */
-var //animal      = new Animal( 'Ardilla' ), // No puedo realizar la instancia por que el Constructor es de tipo protected
-rinoceronte = new Rinoceronte();
+/* Instancia */
+var pulpo = new Pulpo('Octopus');
+/* Si intentamos realizar cambios a los Atributos nos dará ERROR (pues son de solo lectura) */
+// pulpo .nombre = 'Ahora me llamo Jorge'; // ERROR
+// pulpo .numeroDeTentaculos = 5 // ERROR
 /* Resultados */
-console.group('Modificadores (protected)');
-rinoceronte.camina(2);
+console.group('Modificadores (readonly)');
+console.log('Nombre: ', pulpo.nombre);
+console.log('# tentaculos: ', pulpo.numeroDeTentaculos);
 console.groupEnd();
