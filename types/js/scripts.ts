@@ -4,7 +4,7 @@
 /* Definición de la clase Animal */
 class Animal {
   /* Atributos o propiedades */
-  private nombre: string;
+  protected nombre: string;
   /* Constructor */
   public constructor( nombreDelAnimal: string ) {
     this .nombre = nombreDelAnimal;
@@ -12,9 +12,6 @@ class Animal {
   /* Métodos */
   public seMueve( distancia : number ) {
     console .log( `${this .nombre} se ha movido ${distancia}mts` );
-  }
-  public getNombre() {
-    return this .nombre;
   }
 }
 
@@ -26,7 +23,7 @@ class Rinoceronte extends Animal {
   }
   /* Métodos */
   public camina( distancia : number ) {
-    console .log( `${this .getNombre()} ha caminado ${distancia}mts` );
+    console .log( `${this .nombre} se ha caminado ${distancia}mts` );
   }
 }
 
@@ -35,7 +32,7 @@ let animal      = new Animal( 'Ardilla' ),
     rinoceronte = new Rinoceronte();
 
 /* Resultados */
-console .group( 'Modificadores (private)' );
+console .group( 'Modificadores (protected)' );
   animal .seMueve( 15 );
   rinoceronte .camina( 2 );
 console .groupEnd();
