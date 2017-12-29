@@ -6,20 +6,20 @@
  * declaraciones al mismo tiempo. El primero es el tipo de la instancia
  * de la clase */
 
-class Saludar {
-  /* Atributos o propiedades */
-  public saludo: string;
-  /* Constructor */
-  public constructor( mensajeSaludo : string ) {
-    this .saludo = mensajeSaludo;
-  }
-  /* Métodos */
-  public darSaludo () {
-    return 'Hola, ' + this .saludo;
-  }
-}
+/* Función de constructor */
+let Saludar = ( function() {
+    /* Constructor */
+    function Saludar( mensajeSaludo ) {
+      this .saludo = mensajeSaludo;
+    }
+    /* Agregamos un método 'darSaludo' a la Funcion de Constructor 'Saludar' */
+    Saludar .prototype .darSaludo = function() {
+      return 'Hola, ' + this .saludo;
+    };
 
-let saludar: Saludar;               // Creamos una variable con el tipo de la Instancia que vamos a crear
-saludar = new Saludar( 'Mundo!' );  // Creamos la Instancia
+    return Saludar;
+})();
 
+let saludar;
+saludar = new Saludar( 'Mundo!' );  // Creamos la Instancia de Funcion
 console .log( saludar .darSaludo() );
