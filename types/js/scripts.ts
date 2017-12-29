@@ -1,18 +1,22 @@
-/* Types: Indexable Types
- * Las interfaces pemiten describir los tipos de funciones de un Objeto */
+/* Types: Classes
+ * Podemos declarar estructuras de clases en TypeScript */
 
-/* Crea 'Interface' que índica que cuando un dato sea agregado usando la 'Interface'
- * se indexa con un número y devolverá una cadena */
-interface Lista {
-    [ indice: number ] : string;  /* Firma de índice (describe los tipos que podemos usar
-                                   * para indexar en el objeto, junto con los tipos de devolución) */
+class Saludar {
+  /* Atributos o Propiedades */
+  saludo: string;
+
+  /* Consutructor */
+  constructor( mensajeSaludo: string ) {
+    this .saludo = mensajeSaludo;
+  }
+
+  /* Metodos */
+  getSaludo() {
+    return 'Hola, ' + this .saludo;
+  }
+
 }
 
-let lista : Lista;    // Crea una variable del tipo de la 'Interface'
-lista = [ 'Juan', 'Jiménez' ];
+let unSaludo = new Saludar( 'Mundo!' );
 
-let nombre : string = lista[ 0 ],
-    apellido : string = lista[ 1 ];
-
-console .log( 'Nombre ', nombre );
-console .log( 'Apellido ', apellido );
+console .log( 'unSaludo ', unSaludo .getSaludo() );

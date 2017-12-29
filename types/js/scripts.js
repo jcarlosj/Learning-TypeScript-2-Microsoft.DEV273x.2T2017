@@ -1,7 +1,15 @@
-/* Types: Indexable Types
- * Las interfaces pemiten describir los tipos de funciones de un Objeto */
-var lista; // Crea una variable del tipo de la 'Interface'
-lista = ['Juan', 'Jiménez'];
-var nombre = lista[0], apellido = lista[1];
-console.log('Nombre ', nombre);
-console.log('Apellido ', apellido);
+/* Types: Classes
+ * Podemos declarar estructuras de clases en TypeScript */
+var Saludar = /** @class */ (function () {
+    /* Consutructor */
+    function Saludar(mensajeSaludo) {
+        this.saludo = mensajeSaludo;
+    }
+    /* Metodos */
+    Saludar.prototype.getSaludo = function () {
+        return 'Hola, ' + this.saludo;
+    };
+    return Saludar;
+}());
+var unSaludo = new Saludar('Mundo!');
+console.log('unSaludo ', unSaludo.getSaludo());
