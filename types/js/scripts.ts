@@ -1,45 +1,35 @@
 /* Types: Classes
- * Herencia */
+ * Interfaces que extienden (heredan) a clases */
 
-class Animal {
-  /* Atributos */
-  nombre: string;
-  /* Constructor */
-  public constructor( nombreDelAnimal : string ) {
-    this .nombre = nombreDelAnimal;
-  }
-  /* Métodos */
-  public mover( distanciaEnMetros : number = 0 ) {
-    console .log( `${this .nombre} se movió ${distanciaEnMetros}mts` );
-  }
+/* Definición de clase */
+class Control {
+  private estado : any;
 }
 
-class Serpiente extends Animal {
-  /* Constructor */
-  public constructor( nombre ) {
-    super( nombre );
-  }
-  /* Métodos */
-  public mover( distanciaEnMetros = 5 ) {
-    console .log( 'Arrastrandose ... ' );
-    super .mover( distanciaEnMetros );
-  }
+/* Definición de una 'Interface' que extiende o hereda de una clase
+   Cuando un tipo de 'Interface' extiende  de una tipo de clase, hereda
+   los miembros (incluso los privados o protegidos) de la clase, no sus
+   implementaciones. Lo que significa que cuando se crea una 'Interface'
+   que amplica una clse con miembros privados o protegidos, este tipo de
+   'Interface' solo puede ser implementado por esa clase o una subclase*/
+interface ControlSeleccionable extends Control {
+  select(): void;
 }
 
-class Caballo extends Animal {
-  /* Constructor */
-  public constructor( nombre ) {
-    super( nombre );
-  }
-  /* Métodos */
-  public mover( distanciaEnMetros = 5 ) {
-    console .log( 'Galopando ... ' );
-    super .mover( distanciaEnMetros );
-  }
+/* Defición de clase (Subtipo de la clase Control) */
+class Button extends Control {
+  select() {}
+}
+/* Defición de clase  (Subtipo de la clase Control)*/
+class TextBox extends Control {
+  select() {}
+}
+/* Definición de clase
+class Image {
+  select() {}
 }
 
-let sam = new Serpiente( 'Sammy la Serpiente Python' ),
-    tom : Animal = new Caballo( 'Palomo el caballo blanco de Bolivar' );
-
-sam .mover();
-tom .mover( 34 );    
+class Location {
+  select() {}
+}
+*/
