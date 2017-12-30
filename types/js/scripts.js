@@ -1,24 +1,22 @@
-/* Types: Comparaciones Enums (Enumeraciones) */
-var Estado;
-(function (Estado) {
-    Estado[Estado["Esperando"] = 0] = "Esperando";
-    Estado[Estado["Listo"] = 1] = "Listo";
-})(Estado || (Estado = {}));
-var Color;
-(function (Color) {
-    Color[Color["Rojo"] = 0] = "Rojo";
-    Color[Color["Azul"] = 1] = "Azul";
-    Color[Color["Verde"] = 2] = "Verde";
-})(Color || (Color = {}));
-var ColoresPrimarios;
-(function (ColoresPrimarios) {
-    ColoresPrimarios[ColoresPrimarios["Amarillo"] = 0] = "Amarillo";
-    ColoresPrimarios[ColoresPrimarios["Azul"] = 1] = "Azul";
-    ColoresPrimarios[ColoresPrimarios["Rojo"] = 2] = "Rojo";
-})(ColoresPrimarios || (ColoresPrimarios = {}));
-var estado = Estado.Esperando;
-console.log('estado ', estado);
-console.log('color ', Color[1]);
-//estado = Color.Verde                  // ERROR
-var color = Color.Verde;
-//color = ColoresPrimarios .Amarillo;   // ERROR
+/* Types: Comparaciones Clases */
+var Animal = /** @class */ (function () {
+    function Animal(nombre, numeroPies) {
+    }
+    return Animal;
+}());
+var Tamanio = /** @class */ (function () {
+    function Tamanio(numeroPies) {
+    }
+    return Tamanio;
+}());
+/* Comparación */
+var animal, tamanio;
+animal = tamanio; // Ok
+tamanio = animal; // Ok
+/* NOTA: Los miembros privados y protegidos de una clase afectan su compatibilidad.
+         Cuando se comprueba la compatibilidad de una instancia de una clase, si el
+         tipo de destino contiene un miembro privado y el tipo de fuente tambien debe
+         contener un miembro privado igualmente para una instancia con miembros
+         protegidos. ESTO PERMITE QUE UNA CLASE SEA COMPATIBLE CON SU SUPERCLASE,
+         PERO NO CON LAS CLASES DE UNA JERARQUÍA DE HERENCIA DIFERENTE QUE DE LO
+         CONTRARIO TIENE LA MISMA FORMA.*/
