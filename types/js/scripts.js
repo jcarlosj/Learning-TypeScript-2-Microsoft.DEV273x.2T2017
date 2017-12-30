@@ -1,14 +1,55 @@
 /* Types: Classes
- * Técnicas Avanzadas */
-/* Usando una clase como 'Interface'
- * Una declaración de clase (2 ejemplos anteriores) crea 2 cosas
- * la primera: un tipo que representa instancias de clase y una función
- * de constructor. Debido a que las clases crean tipos puede usarlos en
- * los mismos lugares donde podría usar interfaces */
-var Punto = /** @class */ (function () {
-    function Punto() {
+ * Herencia */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Animal = /** @class */ (function () {
+    /* Constructor */
+    function Animal(nombreDelAnimal) {
+        this.nombre = nombreDelAnimal;
     }
-    return Punto;
+    /* Métodos */
+    Animal.prototype.mover = function (distanciaEnMetros) {
+        if (distanciaEnMetros === void 0) { distanciaEnMetros = 0; }
+        console.log(this.nombre + " se movi\u00F3 " + distanciaEnMetros + "mts");
+    };
+    return Animal;
 }());
-var punto3d = { coordenada_x: 1, coordenada_y: 2, coordenada_z: 3 };
-console.log('punto3d ', punto3d);
+var Serpiente = /** @class */ (function (_super) {
+    __extends(Serpiente, _super);
+    /* Constructor */
+    function Serpiente(nombre) {
+        return _super.call(this, nombre) || this;
+    }
+    /* Métodos */
+    Serpiente.prototype.mover = function (distanciaEnMetros) {
+        if (distanciaEnMetros === void 0) { distanciaEnMetros = 5; }
+        console.log('Arrastrandose ... ');
+        _super.prototype.mover.call(this, distanciaEnMetros);
+    };
+    return Serpiente;
+}(Animal));
+var Caballo = /** @class */ (function (_super) {
+    __extends(Caballo, _super);
+    /* Constructor */
+    function Caballo(nombre) {
+        return _super.call(this, nombre) || this;
+    }
+    /* Métodos */
+    Caballo.prototype.mover = function (distanciaEnMetros) {
+        if (distanciaEnMetros === void 0) { distanciaEnMetros = 5; }
+        console.log('Galopando ... ');
+        _super.prototype.mover.call(this, distanciaEnMetros);
+    };
+    return Caballo;
+}(Animal));
+var sam = new Serpiente('Sammy la Serpiente Python'), tom = new Caballo('Palomo el caballo blanco de Bolivar');
+sam.mover();
+tom.mover(34);

@@ -1,20 +1,45 @@
 /* Types: Classes
- * Técnicas Avanzadas */
+ * Herencia */
 
- /* Usando una clase como 'Interface'
-  * Una declaración de clase (2 ejemplos anteriores) crea 2 cosas
-  * la primera: un tipo que representa instancias de clase y una función
-  * de constructor. Debido a que las clases crean tipos puede usarlos en
-  * los mismos lugares donde podría usar interfaces */
-
-class Punto {
-  coordenada_x : number;
-  coordenada_y : number;
+class Animal {
+  /* Atributos */
+  nombre: string;
+  /* Constructor */
+  public constructor( nombreDelAnimal : string ) {
+    this .nombre = nombreDelAnimal;
+  }
+  /* Métodos */
+  public mover( distanciaEnMetros : number = 0 ) {
+    console .log( `${this .nombre} se movió ${distanciaEnMetros}mts` );
+  }
 }
 
-interface Punto3D extends Punto {
-  coordenada_z: number;
+class Serpiente extends Animal {
+  /* Constructor */
+  public constructor( nombre ) {
+    super( nombre );
+  }
+  /* Métodos */
+  public mover( distanciaEnMetros = 5 ) {
+    console .log( 'Arrastrandose ... ' );
+    super .mover( distanciaEnMetros );
+  }
 }
 
-let punto3d: Punto3D = { coordenada_x: 1, coordenada_y: 2, coordenada_z: 3 };
-console .log( 'punto3d ', punto3d );
+class Caballo extends Animal {
+  /* Constructor */
+  public constructor( nombre ) {
+    super( nombre );
+  }
+  /* Métodos */
+  public mover( distanciaEnMetros = 5 ) {
+    console .log( 'Galopando ... ' );
+    super .mover( distanciaEnMetros );
+  }
+}
+
+let sam = new Serpiente( 'Sammy la Serpiente Python' ),
+    tom : Animal = new Caballo( 'Palomo el caballo blanco de Bolivar' );
+
+sam .mover();
+tom .mover( 34 );    
