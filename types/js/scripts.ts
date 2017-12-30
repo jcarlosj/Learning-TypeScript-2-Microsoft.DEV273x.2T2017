@@ -1,35 +1,25 @@
-/* Types: Classes
- * Interfaces que extienden (heredan) a clases */
+/* Types: Compatibilidad estructural */
 
-/* Definición de clase */
-class Control {
-  private estado : any;
-}
-
-/* Definición de una 'Interface' que extiende o hereda de una clase
-   Cuando un tipo de 'Interface' extiende  de una tipo de clase, hereda
-   los miembros (incluso los privados o protegidos) de la clase, no sus
-   implementaciones. Lo que significa que cuando se crea una 'Interface'
-   que amplica una clse con miembros privados o protegidos, este tipo de
-   'Interface' solo puede ser implementado por esa clase o una subclase*/
-interface ControlSeleccionable extends Control {
-  select(): void;
+/* Definición de interface */
+interface Mencionado {
+  nombre : string;
 }
 
-/* Defición de clase (Subtipo de la clase Control) */
-class Button extends Control {
-  select() {}
-}
-/* Defición de clase  (Subtipo de la clase Control)*/
-class TextBox extends Control {
-  select() {}
-}
-/* Definición de clase
-class Image {
-  select() {}
-}
+let persona1: Mencionado,
+    persona2 = { nombre: 'Alicia', localizacion: 'Barranquilla' };
 
-class Location {
-  select() {}
-}
-*/
+console .group( 'Antes de asignar persona1 = persona2;' );
+  console .log( 'persona1 ', persona1 );
+  console .log( 'persona2 ', persona2 );
+console .groupEnd();
+
+persona1 = persona2;  /* Para que esta asignación sea posible el compilador
+                         verifica que cada propiedad de 'persona1' para que
+                         pueda encontrar una propiedad compatible correspondiente
+                         en 'persona2' si la encuentra entonces la asignación
+                         está permitida */
+
+console .group( 'Después de asignar persona1 = persona2;' );
+  console .log( 'persona1 ', persona1 );
+  console .log( 'persona2 ', persona2 );
+console .groupEnd();
