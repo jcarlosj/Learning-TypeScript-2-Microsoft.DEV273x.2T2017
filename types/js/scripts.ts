@@ -1,35 +1,22 @@
-/* Types: Compatibilidad estructural */
+/* Types: Comparación de funciones
+   Hay que tener en cuenta que para dicha comparación no se tienen en cuenta
+   los nombres de los parámetros si no sus tipos*/
 
-/* Definición de interface */
-interface Mencionado {
-  nombre : string;
-}
+/* Define dos Functions Arrow */
+let primeraFuncion = ( numero1 : number ) => 0,
+    segundaFuncion = ( numero2 : number, cadena1 : string ) => 0;
 
-let persona1: Mencionado,
-    persona2 = { nombre: 'Alicia', localizacion: 'Barranquilla' };
-
-/* La misma regla de asignación se usa cuando se verifican argumentos de llamada de función
-   Este proceso de comparación se lleva acabo de forma recursiva, explorando el tipo de cada
-   miembro y sub-miembro */
-function saludar( persona : Mencionado ) {
-  alert( 'Hola, ' + persona .nombre );
-}
-
-saludar( persona2 );
-
-/* Resultado */
-console .group( 'Antes de asignar persona1 = persona2;' );
-  console .log( 'persona1 ', persona1 );
-  console .log( 'persona2 ', persona2 );
+console .group( 'Antes de asignar la segundaFuncion = primeraFuncion;' );
+  console .log( 'primeraFuncion ', primeraFuncion );
+  console .log( 'segundaFuncion ', segundaFuncion );
 console .groupEnd();
 
-persona1 = persona2;  /* Para que esta asignación sea posible el compilador
-                         verifica que cada propiedad de 'persona1' para que
-                         pueda encontrar una propiedad compatible correspondiente
-                         en 'persona2' si la encuentra entonces la asignación
-                         está permitida */
+  segundaFuncion = primeraFuncion;  // Funcionaría perfectamente
+  //primeraFuncion = segundaFuncion;  // Al contrario generaría un ERROR puesto
+                                      // que aunque el primer parámetro es compatible
+                                      // exige un segundo parámetro que es obligatorio
 
-console .group( 'Después de asignar persona1 = persona2;' );
-  console .log( 'persona1 ', persona1 );
-  console .log( 'persona2 ', persona2 );
+console .group( 'Después de asignar la segundaFuncion = primeraFuncion;' );
+  console .log( 'primeraFuncion ', primeraFuncion );
+  console .log( 'segundaFuncion ', segundaFuncion );
 console .groupEnd();
