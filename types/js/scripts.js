@@ -1,22 +1,33 @@
-/* Types: Comparaciones Clases */
-var Animal = /** @class */ (function () {
-    function Animal(nombre, numeroPies) {
+/* Types: Inferencia de compatibilidad */
+/* Interencia de tipos por el contenido de las variables */
+var mensaje = 'Hola esta es una cadena de texto', // Infiere que es String
+edad = 50, // Infiere que es number
+unArregloDeNumeros = [1, 2, null];
+/* Inferencia de Arserción */
+var tipoSinDeclarar = 'Esta es otra cadena de texto';
+console.log('# ', tipoSinDeclarar.length);
+console.log('# ', tipoSinDeclarar.length);
+/* Crea método aceptando Interfaces */
+var cuadradoFn = function (cuadrado) {
+    return cuadrado.nombre;
+};
+var cuadrado = {
+    nombre: 'Un cuadrado',
+    tamanio: 20
+};
+var executeFn = cuadradoFn(cuadrado);
+/* Implementar una Interface que usa una clase */
+var cuadradoClass = /** @class */ (function () {
+    function cuadradoClass() {
+        this.nombre = 'Un cuadrado';
+        this.tamanio = 10;
     }
-    return Animal;
+    return cuadradoClass;
 }());
-var Tamanio = /** @class */ (function () {
-    function Tamanio(numeroPies) {
-    }
-    return Tamanio;
-}());
-/* Comparación */
-var animal, tamanio;
-animal = tamanio; // Ok
-tamanio = animal; // Ok
-/* NOTA: Los miembros privados y protegidos de una clase afectan su compatibilidad.
-         Cuando se comprueba la compatibilidad de una instancia de una clase, si el
-         tipo de destino contiene un miembro privado y el tipo de fuente tambien debe
-         contener un miembro privado igualmente para una instancia con miembros
-         protegidos. ESTO PERMITE QUE UNA CLASE SEA COMPATIBLE CON SU SUPERCLASE,
-         PERO NO CON LAS CLASES DE UNA JERARQUÍA DE HERENCIA DIFERENTE QUE DE LO
-         CONTRARIO TIENE LA MISMA FORMA.*/
+/**/
+var cuadrado2;
+var cuadradoFalso = {
+    'tamanio': 'Una cadena',
+    'nombre': 20
+};
+// cuadrado2 = cuadradoFalso;   // ERROR no se puede asignar 
