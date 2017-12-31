@@ -5,7 +5,7 @@ let baraja = {
   cartas: Array( 52 ),
   crearSeleccionCarta: function () {
 
-    return function() {
+    return () => {    // Ahora nos permite capturar el valor de retorno y devolver este a cambio de la función misma
       let cartaElegida = Math .floor( Math .random() * 52 ),
           paloElegido = Math .floor( cartaElegida / 13 );
 
