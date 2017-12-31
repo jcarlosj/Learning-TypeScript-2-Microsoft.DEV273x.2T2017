@@ -1,42 +1,18 @@
 /* Types: Funciones y tipo de funciones */
 
-function construirNombre_1( primerNombre : string, segundoNombre : string ) : string {
-  return primerNombre + ' ' + segundoNombre;
+/* Rest Parameters (Resto de parámetros)
+   Se tratan como un número ilimitado de parámetros opcionales */
+function construirNombre( primerNombre : string, ...elRestoDelNombre : string[] ) {
+  return primerNombre + ' ' + elRestoDelNombre .join( ' ' );
 }
 
-//let resultado_1 = construirNombre_1( 'Elisa' );                       // ERROR: Espera dos parámetros obligatorios
-//let resultado_2 = construirNombre_1( 'Elisa', 'María', 'Giraldo' );   // ERROR: Se pasan más parámetros de los que espera la función
-let resultado_3 = construirNombre_1( 'Elisa', 'Giraldo' );            // OK: Elisa Giraldo
+let chica = construirNombre( 'Elisa', 'Maria', 'Giraldo' );
+let chico = construirNombre( 'Juan', 'Carlos', 'Jiménez', 'Gutiérrez' );
 
-console .log( 'resultado_3 ', resultado_3 );
+console .log( 'chica ', chica );
+console .log( 'chico ', chico );
 
-/* Usando parámetros opcionales (?) */
-function construirNombre_2( primerNombre : string, segundoNombre? : string ) : string {
-  if( segundoNombre ) {
-    return primerNombre + ' ' + segundoNombre;
-  }
-  else {
-    return primerNombre;
-  }
-}
+/* Otra Forma */
+let construirNombreFn: ( primerNombre: string, ...loDemas : string[] ) => string = construirNombre;
 
-let resultado_4 = construirNombre_2( 'Elisa' );                       // OK: Elisa
-//let resultado_5 = construirNombre_2( 'Elisa', 'María', 'Giraldo' );   // ERROR: Se pasan más parámetros de los que espera la función
-let resultado_6 = construirNombre_2( 'Elisa', 'Giraldo' );            // OK: Elisa Giraldo
-
-console .log( 'resultado_4 ', resultado_4 );
-console .log( 'resultado_6 ', resultado_6 );
-
-/* Usando parámetros valores por defecto */
-function construirNombre_3( primerNombre : string, segundoNombre : string = "Snaders" ) : string {
-  return primerNombre + ' ' + segundoNombre;
-}
-
-let resultado_7 = construirNombre_3( 'Elisa' );                         // OK: Elisa
-let resultado_8 = construirNombre_3( 'Elisa', undefined );              // OK: Elisa, undefined
-//let resultado_9 = construirNombre_3( 'Elisa', 'María', 'Giraldo' );   // ERROR: Se pasan más parámetros de los que espera la función
-let resultado_10 = construirNombre_3( 'Elisa', 'Giraldo' );              // OK: Elisa Giraldo
-
-console .log( 'resultado_7 ', resultado_7 );
-console .log( 'resultado_8 ', resultado_8 );
-console .log( 'resultado_10 ', resultado_10 );
+console .log( 'Como funcion ', construirNombreFn( 'Clara', 'Margarita', 'María', 'Rey', 'Plazas' ) );
