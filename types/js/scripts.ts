@@ -1,9 +1,25 @@
 /* Types: Contexto y Alcance (Scope) */
 
-let baraja = {
+/* this PARAMETER */
+
+interface Carta {
+  palo: string;
+  carta: number;
+}
+
+interface Baraja {
+  palos: string[];
+  cartas: number[];
+  crearSeleccionCarta( this: Baraja ) : () => Carta;    // Llamado de la funcion crearSeleccionCarta desde el Objeto Baraja
+                                                        // --noImplicitThis no causará ningún error
+}
+
+let baraja: Baraja = {
   palos: [ 'corazones', 'diamantes', 'treboles', 'picas' ],
   cartas: Array( 52 ),
-  crearSeleccionCarta: function () {
+  /* Ahora la función especifica explicitamente que su llamada debe ser de tipo Baraja
+     y sabe que espera ser llamado en un Objeto Baraja */
+  crearSeleccionCarta: function ( this: Baraja ) {
 
     return () => {    // Ahora nos permite capturar el valor de retorno y devolver este a cambio de la función misma
       let cartaElegida = Math .floor( Math .random() * 52 ),

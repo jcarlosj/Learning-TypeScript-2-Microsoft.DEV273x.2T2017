@@ -2,6 +2,8 @@
 var baraja = {
     palos: ['corazones', 'diamantes', 'treboles', 'picas'],
     cartas: Array(52),
+    /* Ahora la función especifica explicitamente que su llamada debe ser de tipo Baraja
+       y sabe que espera ser llamado en un Objeto Baraja */
     crearSeleccionCarta: function () {
         var _this = this;
         return function () {
