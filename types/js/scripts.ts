@@ -1,12 +1,12 @@
 /* Types: Funciones y tipo de funciones */
 
 /* Funcion nombrada */
-function add_1( num1, num2 ) {
+function add_1( num1: number, num2: number ) : number {
   return num1 + num2;
 }
 
 /* Funcion Anónima */
-let add_2 = function( num1, num2 ) {
+let add_2 = function( num1: number, num2: number ) : number {
   return num1 + num2;
 }
 
