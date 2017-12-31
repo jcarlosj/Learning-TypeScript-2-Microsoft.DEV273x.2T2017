@@ -1,18 +1,21 @@
-/* Types: Funciones y tipo de funciones */
+/* Types: Contexto y Alcance (Scope) */
 
-/* Rest Parameters (Resto de parámetros)
-   Se tratan como un número ilimitado de parámetros opcionales */
-function construirNombre( primerNombre : string, ...elRestoDelNombre : string[] ) {
-  return primerNombre + ' ' + elRestoDelNombre .join( ' ' );
+let baraja = {
+  palos: [ 'corazones', 'diamantes', 'treboles', 'picas' ],
+  cartas: Array( 52 ),
+  crearSeleccionCarta: function () {
+
+    return function() {
+      let cartaElegida = Math .floor( Math .random() * 52 ),
+          paloElegido = Math .floor( cartaElegida / 13 );
+
+      return { palo: this .palos[ paloElegido ], carta: cartaElegida % 13 };
+    }
+  }
 }
 
-let chica = construirNombre( 'Elisa', 'Maria', 'Giraldo' );
-let chico = construirNombre( 'Juan', 'Carlos', 'Jiménez', 'Gutiérrez' );
+/* Genera la carta */
+let carta_elegida = baraja .crearSeleccionCarta(),    // Retorna una función
+    palo_elegido = carta_elegida();                   // Hacemos llamada de sintáxis a la funcion devuelta
 
-console .log( 'chica ', chica );
-console .log( 'chico ', chico );
-
-/* Otra Forma */
-let construirNombreFn: ( primerNombre: string, ...loDemas : string[] ) => string = construirNombre;
-
-console .log( 'Como funcion ', construirNombreFn( 'Clara', 'Margarita', 'María', 'Rey', 'Plazas' ) );
+alert( 'Carta: ' + palo_elegido .carta + ' de ' + palo_elegido .palo );
