@@ -1,33 +1,42 @@
 /* Types: Funciones y tipo de funciones */
 
-/* Funcion nombrada */
-function add_1( num1: number, num2: number ) : number {
-  return num1 + num2;
+function construirNombre_1( primerNombre : string, segundoNombre : string ) : string {
+  return primerNombre + ' ' + segundoNombre;
 }
 
-/* Funcion Anónima */
-let add_2 = function( num1: number, num2: number ) : number {
-  return num1 + num2;
-}
+//let resultado_1 = construirNombre_1( 'Elisa' );                       // ERROR: Espera dos parámetros obligatorios
+//let resultado_2 = construirNombre_1( 'Elisa', 'María', 'Giraldo' );   // ERROR: Se pasan más parámetros de los que espera la función
+let resultado_3 = construirNombre_1( 'Elisa', 'Giraldo' );            // OK: Elisa Giraldo
 
-console .log( 'Funcion nombrada : ', add_1( 2, 3 ) );
-console .log( 'Funcion anónima : ', add_2( 2, 3 ) );
+console .log( 'resultado_3 ', resultado_3 );
 
-/* Las mismas funcion escrita con la sintaxis de funciones flecha */
-let add_3: ( num1: number, num2: number ) =>
-  number = function ( num1 : number, num2 : number) : number {
-    return num1 + num2;
+/* Usando parámetros opcionales (?) */
+function construirNombre_2( primerNombre : string, segundoNombre? : string ) : string {
+  if( segundoNombre ) {
+    return primerNombre + ' ' + segundoNombre;
   }
+  else {
+    return primerNombre;
+  }
+}
 
-console .log( 'Otra Funcion ', add_3( 2, 3 ) );
+let resultado_4 = construirNombre_2( 'Elisa' );                       // OK: Elisa
+//let resultado_5 = construirNombre_2( 'Elisa', 'María', 'Giraldo' );   // ERROR: Se pasan más parámetros de los que espera la función
+let resultado_6 = construirNombre_2( 'Elisa', 'Giraldo' );            // OK: Elisa Giraldo
 
-/* Mientras los tipos de parámetro se alinien, se considera un tipo válido
-   para la función, independiente de los nombres que le dé a los parámetros
-   en el tipo de función */
+console .log( 'resultado_4 ', resultado_4 );
+console .log( 'resultado_6 ', resultado_6 );
 
-let add_4: ( num1: number, num2: number ) =>
- number = function ( numero1 : number, numero2 : number) : number {
-   return numero1 + numero2;
- }
+/* Usando parámetros valores por defecto */
+function construirNombre_3( primerNombre : string, segundoNombre : string = "Snaders" ) : string {
+  return primerNombre + ' ' + segundoNombre;
+}
 
-console .log( 'Otra Funcion (nombres diferentes)', add_4( 2, 3 ) );
+let resultado_7 = construirNombre_3( 'Elisa' );                         // OK: Elisa
+let resultado_8 = construirNombre_3( 'Elisa', undefined );              // OK: Elisa, undefined
+//let resultado_9 = construirNombre_3( 'Elisa', 'María', 'Giraldo' );   // ERROR: Se pasan más parámetros de los que espera la función
+let resultado_10 = construirNombre_3( 'Elisa', 'Giraldo' );              // OK: Elisa Giraldo
+
+console .log( 'resultado_7 ', resultado_7 );
+console .log( 'resultado_8 ', resultado_8 );
+console .log( 'resultado_10 ', resultado_10 );
