@@ -1,33 +1,11 @@
-/* Types: Inferencia de compatibilidad */
-/* Interencia de tipos por el contenido de las variables */
-var mensaje = 'Hola esta es una cadena de texto', // Infiere que es String
-edad = 50, // Infiere que es number
-unArregloDeNumeros = [1, 2, null];
-/* Inferencia de Arserción */
-var tipoSinDeclarar = 'Esta es otra cadena de texto';
-console.log('# ', tipoSinDeclarar.length);
-console.log('# ', tipoSinDeclarar.length);
-/* Crea método aceptando Interfaces */
-var cuadradoFn = function (cuadrado) {
-    return cuadrado.nombre;
+/* Types: Funciones y tipo de funciones */
+/* Funcion nombrada */
+function add_1(num1, num2) {
+    return num1 + num2;
+}
+/* Funcion Anónima */
+var add_2 = function (num1, num2) {
+    return num1 + num2;
 };
-var cuadrado = {
-    nombre: 'Un cuadrado',
-    tamanio: 20
-};
-var executeFn = cuadradoFn(cuadrado);
-/* Implementar una Interface que usa una clase */
-var cuadradoClass = /** @class */ (function () {
-    function cuadradoClass() {
-        this.nombre = 'Un cuadrado';
-        this.tamanio = 10;
-    }
-    return cuadradoClass;
-}());
-/**/
-var cuadrado2;
-var cuadradoFalso = {
-    'tamanio': 'Una cadena',
-    'nombre': 20
-};
-// cuadrado2 = cuadradoFalso;   // ERROR no se puede asignar 
+console.log('Funcion nombrada : ', add_1(2, 3));
+console.log('Funcion anónima : ', add_2(2, 3));
