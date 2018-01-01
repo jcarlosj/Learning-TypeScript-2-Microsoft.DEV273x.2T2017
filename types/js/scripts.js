@@ -1,5 +1,8 @@
 /* Types: Overloads (Sobrecargas) */
 var palos = ['corazones', 'diamantes', 'treboles', 'picas'];
+/* NOTA: Con este cambio, las sobrecargas ahora dan llamadas verificadas por tipo a la función 'elegirCarta'
+ *       Es importante ordenar esta lista de sobrecargas desde la más específica a la menos específica */
+/* Luego nuestra función */
 function elegirCarta(x) {
     /* Verifica que estamos trabajando con un Objeto Matriz, si cumple
      * nos dará el mazo para elegir una carta */

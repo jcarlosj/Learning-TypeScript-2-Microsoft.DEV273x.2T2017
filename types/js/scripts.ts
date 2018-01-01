@@ -2,6 +2,15 @@
 
 let palos = [ 'corazones', 'diamantes', 'treboles', 'picas' ];
 
+/* Proporcionamos múltiples tipos de funciones para la misma función que una lista de sobrecargas
+ * Esta lista es lo que el compilador utilizará para resolver las llamadas a funciones esta lista
+ * de sobre cargas describirá lo que nuestra función 'elegirCarta' aceptará y devolverá */
+function elegirCarta( x : { palo: string, carta: number } [] ) : number ;
+function elegirCarta( x : number ) : { palo: string, carta: number };
+/* NOTA: Con este cambio, las sobrecargas ahora dan llamadas verificadas por tipo a la función 'elegirCarta'
+ *       Es importante ordenar esta lista de sobrecargas desde la más específica a la menos específica */
+
+/* Luego nuestra función */
 function elegirCarta( x ) : any {
   /* Verifica que estamos trabajando con un Objeto Matriz, si cumple
    * nos dará el mazo para elegir una carta */
