@@ -1,31 +1,27 @@
-/* Types: Contexto y Alcance (Scope) */
-var baraja = {
-    palos: ['corazones', 'diamantes', 'treboles', 'picas'],
-    cartas: Array(52),
-    /* Ahora la función especifica explicitamente que su llamada debe ser de tipo Baraja
-       y sabe que espera ser llamado en un Objeto Baraja */
-    crearSeleccionCarta: function () {
-        var _this = this;
-        return function () {
-            var cartaElegida = Math.floor(Math.random() * 52), paloElegido = Math.floor(cartaElegida / 13), elegida = cartaElegida % 13;
-            console.log(elegida);
-            if (elegida == 0 || elegida == 1) {
-                elegida = 'A';
-            }
-            if (elegida == 11) {
-                elegida = 'J';
-            }
-            if (elegida == 12) {
-                elegida = 'Q';
-            }
-            if (elegida == 13) {
-                elegida = 'K';
-            }
-            return { palo: _this.palos[paloElegido], carta: elegida };
-        };
+/* Types: Overloads (Sobrecargas) */
+var palos = ['corazones', 'diamantes', 'treboles', 'picas'];
+function elegirCarta(x) {
+    /* Verifica que estamos trabajando con un Objeto Matriz, si cumple
+     * nos dará el mazo para elegir una carta */
+    if (typeof x == 'object') {
+        var cartaElegida = Math.floor(Math.random() * x.length);
+        return cartaElegida;
     }
-};
-/* Genera la carta */
-var carta_elegida = baraja.crearSeleccionCarta(), // Retorna una función
-palo_elegido = carta_elegida(); // Hacemos llamada de sintáxis a la funcion devuelta
-alert('Carta: ' + palo_elegido.carta + ' de ' + palo_elegido.palo);
+    else if (typeof x == 'number') {
+        /* De lo contrario, simplemente déjelos elegir la carta */
+        var paloElegido = Math.floor(x / 13);
+        return { palo: palos[paloElegido], carta: x % 13 };
+    }
+}
+/* Objeto con las cartas disponibles para elegir */
+var miBaraja = [
+    { palo: 'diamantes', carta: 2 },
+    { palo: 'picas', carta: 10 },
+    { palo: 'corazones', carta: 4 }
+];
+/* Selecciona las cartas siempre que se le pase un objeto con las cartas dispobibles */
+var primeraCartaElegida = miBaraja[elegirCarta(miBaraja)];
+alert('Carta ' + primeraCartaElegida.carta + ' de ' + primeraCartaElegida.palo);
+/* Selecciona de todas las cartas existentes en un Naipe siempre que se le pase un valor numérico */
+var segundaCartaElegida = elegirCarta(15);
+alert('Carta ' + segundaCartaElegida.carta + ' de ' + segundaCartaElegida.palo);
