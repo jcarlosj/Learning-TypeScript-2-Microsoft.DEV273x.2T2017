@@ -6,4 +6,9 @@ window.onload = function () {
     // Agrega los elementos HTML creados al cuerpo del documento
     document.body.appendChild(button);
     document.body.appendChild(div);
+    /* Asignamos la función a una variable */
+    var cambioColor = function (elemento, color) {
+        elemento.style.backgroundColor = color; // La propiedad 'style' no exite en el tipo 'Element'
+        return true;
+    };
 };
