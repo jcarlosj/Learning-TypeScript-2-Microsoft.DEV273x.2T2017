@@ -11,3 +11,11 @@ var Fondo = /** @class */ (function () {
     };
     return Fondo;
 }());
+/* Crea Conjunto de Elementos Enum */
+var Colores;
+(function (Colores) {
+    Colores[Colores["Verde"] = 0] = "Verde";
+    Colores[Colores["Rojo"] = 1] = "Rojo";
+    Colores[Colores["Azul"] = 2] = "Azul";
+    Colores[Colores["Naranja"] = 3] = "Naranja";
+})(Colores || (Colores = {}));

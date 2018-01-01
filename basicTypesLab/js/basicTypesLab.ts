@@ -20,3 +20,11 @@ interface ConjuntoElementos {
   'div'    : Element,
   'button' : Element
 }
+
+/* Crea Conjunto de Elementos Enum */
+enum Colores {
+  Verde,
+  Rojo,
+  Azul,
+  Naranja
+}
