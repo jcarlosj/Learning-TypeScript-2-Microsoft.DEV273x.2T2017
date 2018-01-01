@@ -42,5 +42,24 @@
     });
   }
 
+  /* Ahora usamos el mapeo en ES6 para asignar valores a cada uno de los elementos creados anteriormente*/
+  elementosHTML .map( ( elemento, indice ) => {
+    /* Hacemos una instancia de Fondo */
+    let claseFondo = new Fondo( elemento .div );
+
+    /* Asignamos los valores de alto y ancho del elemento div */
+    ( elemento .div as HTMLElement ) .style .width = squareSize;
+    ( elemento .div as HTMLElement ) .style .height = squareSize;
+    elemento .button .textContent = 'Change Color';
+
+    /* Evento del botón */
+    ( elemento .button as HTMLElement ) .onclick = ( event ) => {
+      claseFondo .cambiarColor ( Colores[ indice ] );         // Variable Enum
+    }
+
+    /* Desplegamos en el documento HTML */ 
+    document .body .appendChild( elemento .button );
+    document .body .appendChild( elemento .div );
+  });
 
 //}
