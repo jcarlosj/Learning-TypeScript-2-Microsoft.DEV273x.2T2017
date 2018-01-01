@@ -1,4 +1,5 @@
 /* basicTypesLab File */
+/* Crea clase */
 var Fondo = /** @class */ (function () {
     /* Constructor */
     function Fondo(div) {

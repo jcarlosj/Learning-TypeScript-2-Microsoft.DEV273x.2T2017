@@ -1,5 +1,6 @@
 /* basicTypesLab File */
 
+/* Crea clase */
 class Fondo {
   /* Atributos */
   div : Element;
@@ -12,4 +13,10 @@ class Fondo {
     return true;
   }
 
+}
+
+/* Crea Interface */
+interface ConjuntoElementos {
+  'div'    : Element,
+  'button' : Element
 }
