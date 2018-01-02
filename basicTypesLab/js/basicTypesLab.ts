@@ -15,6 +15,8 @@
 
   }
 
+
+
   /* Crea Interface */
   interface ConjuntoElementos {
     'div'    : Element,
@@ -27,6 +29,20 @@
     Red,
     Blue,
     Orange
+  }
+
+  /* Crear clase */
+  class Color extends Fondo {
+    /* Atributos */
+    static colores = Colores;
+    /* Constructor */
+    constructor( div : Element ) {
+      super( div );
+
+      /* Asignamos los valores de alto y ancho del elemento div */
+      ( this .div as HTMLElement ) .style .width = squareSize;
+      ( this .div as HTMLElement ) .style .height = squareSize;
+    }
   }
 
   /* Creamos un Array (Para unir todo lo anterior) */
@@ -47,9 +63,6 @@
     /* Hacemos una instancia de Fondo */
     let claseFondo = new Fondo( elemento .div );
 
-    /* Asignamos los valores de alto y ancho del elemento div */
-    ( elemento .div as HTMLElement ) .style .width = squareSize;
-    ( elemento .div as HTMLElement ) .style .height = squareSize;
     elemento .button .textContent = 'Change Color';
 
     /* Evento del botón */
@@ -57,7 +70,7 @@
       claseFondo .cambiarColor ( Colores[ indice ] );         // Variable Enum
     }
 
-    /* Desplegamos en el documento HTML */ 
+    /* Desplegamos en el documento HTML */
     document .body .appendChild( elemento .button );
     document .body .appendChild( elemento .div );
   });
