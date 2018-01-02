@@ -17,6 +17,9 @@ var Fondo = /** @class */ (function () {
         this.div = div;
     }
     Fondo.prototype.cambiarColor = function (color) {
+        if (typeof (color) === 'number') {
+            return true;
+        }
         this.div.style.backgroundColor = color;
         return true;
     };
@@ -41,8 +44,14 @@ var Color = /** @class */ (function (_super) {
         _this.div.style.height = squareSize;
         return _this;
     }
+    /* Método de cambio de color */
+    Color.prototype.cambiar = function (numero_color) {
+        /* Asignamos el color al fondo de nuestra varible stática que contiene una lista de colores (Enum) */
+        this.div.style.backgroundColor = Colores[numero_color];
+        return true;
+    };
     /* Atributos */
-    Color.colores = Colores;
+    Color.Colores = Colores;
     return Color;
 }(Fondo));
 /* Creamos un Array (Para unir todo lo anterior) */
@@ -57,14 +66,20 @@ for (var i = 0; i < 4; i++) {
 /* Ahora usamos el mapeo en ES6 para asignar valores a cada uno de los elementos creados anteriormente*/
 elementosHTML.map(function (elemento, indice) {
     /* Hacemos una instancia de Fondo */
-    var claseFondo = new Fondo(elemento.div);
+    var claseColor = new Color(elemento.div);
     elemento.button.textContent = 'Change Color';
     /* Evento del botón */
     elemento.button.onclick = function (event) {
-        claseFondo.cambiarColor(Colores[indice]); // Variable Enum
+        claseColor.cambiar(getRamdomIntInclusive(0, 3)); // Variable Enum
     };
     /* Desplegamos en el documento HTML */
     document.body.appendChild(elemento.button);
     document.body.appendChild(elemento.div);
 });
+/* Función para generar un número Aleatorio */
+var getRamdomIntInclusive = function (min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 //}
