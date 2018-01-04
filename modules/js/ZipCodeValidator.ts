@@ -8,6 +8,9 @@ class ZipCodeValidator implements StringValidator {
   }
 }
 
+/* Crea y exporta una constante */
+export const PI = 3.1415;
+
 /* Cuando las exportaciones deben renombrarse de acuerdo a los ficheros que los consumen
  * podemos renombrarlos de la siguiente manera */
 export { ZipCodeValidator };                  // Exportación corriente
